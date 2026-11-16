@@ -1,6 +1,9 @@
 name: Stage APK bundle
 
 on:
+  push:
+    paths:
+      - ".github/workflows/stage-apk-bundle.yml"
   workflow_dispatch:
 
 permissions:
