@@ -1,4 +1,4 @@
-name: Stage APK bundle
+name: Stage 4th bundle
 
 on:
   push:
@@ -13,16 +13,16 @@ jobs:
   stage:
     runs-on: ubuntu-latest
     steps:
-      - name: Download release asset
+      - name: Download v1.1 release bundle
         run: |
           curl --fail --location --retry 3 \
-            "https://github.com/NovicePA/TQ-Multimastery/releases/download/v.1.0/3.apks.zip" \
-            --output 3.apks.zip
-          echo "cb19dec8b3c46b211b1bb2b48db93e298d3d3cb2dac38db6ed6bf4c94705965f  3.apks.zip" | sha256sum --check
+            "https://github.com/NovicePA/TQ-Multimastery/releases/download/v.1.1/4th.bundle.zip" \
+            --output 4th.bundle.zip
+          echo "6c983dbe63c60d70b6e9b6b738a0a5afd8553825ec4dae8b715a5b98041cad71  4th.bundle.zip" | sha256sum --check
       - name: Upload bundle as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: tq-apk-bundle
-          path: 3.apks.zip
+          name: tq-4th-bundle
+          path: 4th.bundle.zip
           if-no-files-found: error
           retention-days: 2
