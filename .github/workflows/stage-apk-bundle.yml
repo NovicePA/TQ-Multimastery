@@ -1,0 +1,25 @@
+name: Stage APK bundle
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download release asset
+        run: |
+          curl --fail --location --retry 3 \
+            "https://github.com/NovicePA/TQ-Multimastery/releases/download/v.1.0/3.apks.zip" \
+            --output 3.apks.zip
+          echo "cb19dec8b3c46b211b1bb2b48db93e298d3d3cb2dac38db6ed6bf4c94705965f  3.apks.zip" | sha256sum --check
+      - name: Upload bundle as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tq-apk-bundle
+          path: 3.apks.zip
+          if-no-files-found: error
+          retention-days: 2
